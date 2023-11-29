@@ -24,7 +24,7 @@ $('#Login').submit(function (e) {
     .then((success) => {
       // Signed in
       // ...
-      console.log('login in successful');
+      console.log('login successful');
       let user = firebase.auth().currentUser;
 
       //user.updateProfile({ displayName: "Not sure" });
@@ -47,5 +47,22 @@ $('#Login').submit(function (e) {
 $('#google').click(function() {
   var provider = new firebase.auth.GoogleAuthProvider();
 
-  firebase.auth().signInWithPopup(provider).then();
+  firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    // The signed-in user info.
+    var user = result.user;
+    console.log("sign in through google",user);
+    // IdP data available in result.additionalUserInfo.profile.
+      // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
 });
