@@ -18,6 +18,10 @@ $('#Login').submit(function (e) {
   var email = 'jjsharp224@gmail.com';
   var password = 'asdfgh';
 
+  // firebase.firestore().collection("").orderBy("").limit(3).get().then((querySnapshot) => {
+
+  // }))
+
   firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
